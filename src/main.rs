@@ -10,7 +10,7 @@ fn main() -> anyhow::Result<()> {
     Ok(())
 }
 
-/// Controls backlight strenght
+/// Controls backlight strength
 #[derive(clap::Parser, Debug)]
 struct Cli {
     /// Path to the device to modify.
