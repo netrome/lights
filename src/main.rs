@@ -13,8 +13,8 @@ fn main() -> anyhow::Result<()> {
 /// Controls backlight strenght
 #[derive(clap::Parser, Debug)]
 struct Cli {
-    /// Path to the device to modify. Example "/sys/class/backlight/intel_backlight/"
-    #[arg(short, long)]
+    /// Path to the device to modify.
+    #[arg(short, long, default_value = "/sys/class/backlight/intel_backlight/")]
     device_path: PathBuf,
     #[command(flatten)]
     delta: Delta,
@@ -23,11 +23,11 @@ struct Cli {
 #[derive(clap::Args, Debug)]
 struct Delta {
     /// Fraction of max brightness to add to current brightness. Sensible range [-1.0, 1.0].
-    #[arg(short, long)]
+    #[arg(short, long, allow_hyphen_values = true, default_value = "0.")]
     abs: f64,
 
     /// Multiplier of current brightness. Sensible range [0.0, +Inf].
-    #[arg(short, long)]
+    #[arg(short, long, default_value = "1.")]
     rel: f64,
 }
 
